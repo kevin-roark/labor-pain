@@ -430,23 +430,46 @@ $(function() {
 
   var MAX_BRIGHT = 666;
 
-  setTimeout(step1, 15000);
-  setTimeout(step2, 35000);
-  setTimeout(step3, 50000);
-  setTimeout(step4, C2S - 1500);
-  setTimeout(step5, PAIN1S + 1500);
-  setTimeout(soundsFun, THAT_SOUNDS_FUN);
-  setTimeout(julieMasters, START_JULIE);
-  setTimeout(owies, PAIN1S + 2000);
+  video.addEventListener("canplaythrough", function() {
 
-  setInterval(function() {
-    $('.debug-timer').html(video.currentTime);
-  }, 200);
+    video.play();
+    setTimeout(hideFooter, 500);
+    setTimeout(step1, 15000);
+    setTimeout(step2, 35000);
+    setTimeout(step3, 50000);
+    setTimeout(step4, C2S - 1500);
+    setTimeout(step5, PAIN1S + 1500);
+    setTimeout(soundsFun, THAT_SOUNDS_FUN);
+    setTimeout(julieMasters, START_JULIE);
+    setTimeout(owies, PAIN1S + 2000);
 
-  soundControl();
+    soundControl();
+    speedControl();
+
+    setInterval(function() {
+      $('.debug-timer').html(video.currentTime);
+    }, 200);
+  });
+
+  function hideFooter() {
+    $('.footer').animate({
+      opacity: 0.0
+    }, 800);
+
+    $('.footer').mouseenter(function() {
+      $(this).animate({
+        opacity: 1.0
+      }, 400);
+    });
+
+    $('.footer').mouseleave(function() {
+      $(this).animate({
+        opacity: 0.0
+      }, 400);
+    });
+  }
 
   function soundControl() {
-
     function toggle() {
       video.muted = !video.muted;
     }
@@ -478,10 +501,7 @@ $(function() {
 
   }
 
-  speedControl();
-
   function speedControl() {
-
     function speed(rate) {
       video.playbackRate = rate;
     }

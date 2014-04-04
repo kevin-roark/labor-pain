@@ -71,6 +71,9 @@ body {
 
 .footer {
   width: 100%;
+  position: absolute;
+  bottom: 0;
+  z-index: 2;
   padding: 1em 0em;
   background-color: rgba(225, 225, 225, 1);
   color: #333;
