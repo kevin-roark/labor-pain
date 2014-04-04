@@ -19,6 +19,7 @@ body {
     height: 100%;
     width: 100%;
     overflow: hidden;
+    background-color: #000;
 }
 
 .video-wrapper {
@@ -39,10 +40,33 @@ body {
 }
 
 .fun-text {
-  font-size: 500%;
+  font-size: 666%;
   position: absolute;
-  left: 25%;
+  left: 15%;
   top: 40%;
+}
+
+.julie-text {
+  font-size: 800%;
+  position: absolute;
+  left: 30%;
+  top: 20%;
+}
+
+.ow-text {
+  font-size: 800%;
+  position: absolute;
+  left: 80%;
+  top: 10%;
+  color: red;
+}
+
+.debug-timer {
+  position: absolute;
+  left: 30px;
+  top: 40px;
+  z-index: 1000;
+  font-size: 44px;
 }
 
 .footer {
