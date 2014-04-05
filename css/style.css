@@ -47,17 +47,18 @@ body {
 }
 
 .julie-text {
-  font-size: 800%;
+  font-size: 1200%;
   position: absolute;
+  font-weight: 100;
   left: 30%;
-  top: 20%;
+  top: 20px;
 }
 
 .ow-text {
-  font-size: 800%;
+  font-size: 2200%;
   position: absolute;
-  left: 80%;
-  top: 10%;
+  left: 50%;
+  top: 5%;
   color: red;
 }
 
