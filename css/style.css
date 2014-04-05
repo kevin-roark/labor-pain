@@ -76,17 +76,17 @@ body {
   bottom: 0;
   z-index: 2;
   padding: 1em 0em;
-  background-color: rgba(225, 225, 225, 1);
-  color: #333;
+  background-color: rgb(30, 30, 30);
+  color: #efefef;
   text-align: center;
   font-size: 100%;
 }
    .footer a {
-        color: rgba(60, 60, 240, 0.9);
+        color: rgba(240, 60, 60, 0.9);
         text-decoration: none;
     }
          .footer  a:hover, footer a:focus {
-            color: rgba(90, 95, 255, 1.0);
+            color: rgba(255, 80, 80, 1.0);
         }
 
 /* add all ur other cool stuff here !! */
