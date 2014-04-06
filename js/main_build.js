@@ -484,6 +484,10 @@ $(function() {
       activeBrightness = false;
       activeColor = false;
       activeWarp = false;
+      kt.brightness($vid, 100);
+      kt.contrast($vid, 100);
+      kt.saturate($vid, 100);
+      kt.ivert($vid, 0);
       kt.clearTransforms($vid);
       kt.clearFilters($vid);
       MAX_BRIGHT = 666;
