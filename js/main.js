@@ -65,9 +65,9 @@ $(function() {
     soundControl();
     speedControl();
 
-    //setInterval(function() {
-    //  $('.debug-timer').html(audio.currentTime);
-    //}, 200);
+    setInterval(function() {
+      $('.debug-timer').html(video.currentTime + ' | ' + audio.currentTime);
+    }, 200);
   }
 
   function cutTheCrap() {
@@ -83,7 +83,7 @@ $(function() {
       kt.brightness($vid, 100);
       kt.contrast($vid, 100);
       kt.saturate($vid, 100);
-      kt.ivert($vid, 0);
+      kt.invert($vid, 0);
       kt.clearTransforms($vid);
       kt.clearFilters($vid);
       MAX_BRIGHT = 666;
@@ -149,20 +149,20 @@ $(function() {
     var timer = setInterval(function() {
       var t = speedTimes[0];
       var c = video.currentTime * 1000;
-      var diff = Math.abs(c - t);
-      if (diff < 100) { // a speed time
+      var diff = c - t;
+      if (diff >= 100) { // a speed time
         setSpeed(t);
         speedTimes.shift(); // remove this one
         if (speedTimes.length == 0) {
           clearInterval(timer);
         }
       }
-    }, 150);
+    }, 100);
 
     function setSpeed(time) {
       switch (time) {
         case PAIN1S:
-          speed(0.7); break;
+          speed(0.6); break;
         case PAIN1E:
           speed(1.0); break;
         case PAIN2S:
@@ -183,7 +183,7 @@ $(function() {
 
     function brightnessShift() {
       kt.clearFilters($vid);
-      var b = kt.randInt(MAX_BRIGHT, 15);
+      var b = kt.randInt(MAX_BRIGHT, 5);
       kt.brightness($vid, b);
 
       var next = kt.randInt(250, 50);
@@ -200,10 +200,11 @@ $(function() {
     var maxsat = 300;
 
     function colorShift() {
+      kt.clearFilters($vid);
       var con = kt.randInt(maxcon, 60);
       var hue = kt.randInt(360);
       var sat = kt.randInt(maxsat, 60);
-      var inv = kt.randInt(101);
+      var inv = kt.randInt(100);
 
       kt.contrast($vid, con);
       kt.hutate($vid, hue);
@@ -226,18 +227,16 @@ $(function() {
       var xs = kt.randInt(60) - 30; // -30 -> 30
       var ys = kt.randInt(60) - 30; // -30 -> 30
 
-      kt.rotate($vid, deg);
-      kt.skew($vid, xs, ys);
+      kt.warp($vid, deg, xs, ys);
 
-      var clear = kt.randInt(1000, 500);
+      var clear = kt.randInt(1300, 500);
       setTimeout(clearTransforms, clear);
     }
 
     function clearTransforms() {
-      kt.rotate($vid, 0);
-      kt.skew($vid, 0, 0);
+      kt.warp($vid, 0, 0, 0);
 
-      var next = kt.randInt(5000, 1500);
+      var next = kt.randInt(4000, 1000);
       if (activeWarp)
         setTimeout(transform, next);
     }
