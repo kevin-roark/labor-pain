@@ -202,7 +202,7 @@ Kutility.prototype.translate = function(el, x, y) {
  */
 Kutility.prototype.skew = function(el, x, y) {
   var ct = this.getTransform(el);
-  ct = ct.replace(/skew\(.*?\)/, '').replace('none', '');
+  ct = ct.replace(/skew\(.*?\)/, '').replace(/matrix\(.*?\)/, '').replace('none', '');
 
   var xd = x + 'deg';
   var yd = y + 'deg';
@@ -211,17 +211,20 @@ Kutility.prototype.skew = function(el, x, y) {
 }
 
 /**
- * Warp an element by a random amount by rotating and skewing it.
+ * Warp an element by rotating and skewing it.
  *
  * @api public
  */
-Kutility.prototype.warp = function(el) {
-  var r = Math.floor(Math.random() * 360);
-  var x = Math.floor(Math.random() * 360);
-  var y = Math.floor(Math.random() * 360);
+Kutility.prototype.warp = function(el, d, x, y) {
+  var ct = this.getTransform(el);
+  ct = ct.replace(/matrix\(.*?\)/, '').replace('none', '');
 
-  this.rotate(el, r);
-  this.skew(el, x, y);
+  var r = ' rotate(' + d + 'deg)';
+  var xd = x + 'deg';
+  var yd = y + 'deg';
+  var s = ' skew(' + xd + ', ' + yd + ')';
+
+  this.setTransform(el, ct + r + s);
 }
 
 /**
