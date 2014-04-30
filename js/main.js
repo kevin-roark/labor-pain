@@ -34,15 +34,22 @@ $(function() {
   var AUDIO_LENGTH = 364000;
   var MAX_BRIGHT = 666;
 
+  var canStart = false;
+
   video.addEventListener("canplaythrough", function() {
     vidReady = true;
     if (audReady)
-      start();
+      canStart = true;
   });
 
   audio.addEventListener("canplaythrough", function() {
     audReady = true;
     if (vidReady)
+      canStart = true;
+  });
+
+  $(document).keypress(function(ev) {
+    if (canStart && ev.keyCode == 115) // the 's' key
       start();
   });
 
@@ -50,7 +57,7 @@ $(function() {
     audio.play();
     video.play();
 
-    setTimeout(hideFooter, 1000);
+    setTimeout(hideFooter, 100);
     setTimeout(step1, 17000);
     setTimeout(step2, 35000);
     setTimeout(step3, 53000);
@@ -64,10 +71,6 @@ $(function() {
 
     soundControl();
     speedControl();
-
-    setInterval(function() {
-      $('.debug-timer').html(video.currentTime + ' | ' + audio.currentTime);
-    }, 200);
   }
 
   function cutTheCrap() {
@@ -102,9 +105,7 @@ $(function() {
       $('.footer').unbind('mouseleave');
     }
 
-    showFooter();
     activeAngelique = false;
-    setTimeout(restart, 5000);
   }
 
   function hideFooter() {
